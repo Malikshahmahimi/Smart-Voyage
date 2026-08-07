@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Smart Voyage Premium — Exclusive Business & First Class flight deals. Luxury sedan pickup, up to 25% off market prices, personalized concierge service.">
+  <title>Smart Voyage Premium — Business & First Class Flight Deals</title>
+  <link rel="stylesheet" href="premium.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.png">
+  <!-- <svg class="nav-logo-plane" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
+    stroke-width="1.5">
+    <path d="M22 2L11 13" />
+    <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+  </svg> -->
+
+<body>
+
+  <!-- PREMIUM PLANE ANIMATION -->
+  <!-- <div id="premium-plane" class="premium-plane">
+    <svg viewBox="0 0 40 40" width="40" height="40">
+      <path
+        d="M38 18v-2l-14-8V2.5C24 1.12 22.88 0 21.5 0S19 1.12 19 2.5V8L5 16v2l14-4v10l-4 3v2.5l5.5-1.5L26 29.5V27l-4-3V14l16 4z"
+        fill="rgba(196,149,106,0.7)" />
+    </svg>
+  </div> -->
+
+  <!-- HERO (No navbar - clean full-screen like business-class.com) -->
+  <section class="p-hero" id="p-hero">
+    <div class="p-hero-bg">
+      <video autoplay muted loop playsinline id="hero-video">
+        <source src="images/video.mp4" type="video/mp4">
+      </video>
+      <img src="images/premium-hero-bg.png" alt="Premium luxury travel" loading="eager" class="p-hero-fallback">
+    </div>
+    <div class="p-hero-overlay"></div>
+
+    <!-- Minimal top bar (logo + phone only, like business-class.com) -->
+    <div class="p-hero-topbar">
+      <a href="#" class="p-topbar-logo">
+        <div class="nav-logo-text">SMART<span>VOYAGE</span></div>
+        <svg class="nav-logo-plane" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
+          stroke-width="1.5">
+          <path d="M22 2L11 13" />
+          <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+        </svg>
+      </a>
+      <div class="p-topbar-right">
+        <a href="tel:+917738836277" class="p-topbar-phone">
+          <span class="p-topbar-phone-label">24/7 DEALS</span>
+          <span class="p-topbar-phone-num">IND +91 7738836277</span>
+        </a>
+        <button class="p-topbar-menu" id="p-hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- LEFT: Compact Search Card (exact business-class.com match) -->
+      <div class="p-hero-form">
+        <div class="p-form-top-row">
+          <div class="p-form-select-wrap">
+            <div class="pf-custom-select" id="pf-trip-select">
+              <div class="pf-select-trigger">
+                <span id="pf-trip-label">Round-Trip</span>
+                <svg width="10" height="6" viewBox="0 0 10 6">
+                  <path d="M0 0l5 6 5-6z" fill="#999" />
+                </svg>
+              </div>
+              <div class="pf-select-dropdown">
+                <div class="pf-select-option active" data-value="Round-Trip">Round-Trip</div>
+                <div class="pf-select-option" data-value="One-Way">One-Way</div>
+                <div class="pf-select-option" data-value="Multi-City">Multi-City</div>
+              </div>
+              <input type="hidden" id="pf-trip-type" value="Round-Trip">
+            </div>
+          </div>
+          <div class="p-form-select-wrap">
+            <div class="pf-custom-select" id="pf-class-select">
+              <div class="pf-select-trigger">
+                <span id="pf-class-label">Business · 1 Traveler</span>
+                <svg width="10" height="6" viewBox="0 0 10 6">
+                  <path d="M0 0l5 6 5-6z" fill="#999" />
+                </svg>
+              </div>
+              <input type="hidden" id="pf-class" value="Business">
+              <input type="hidden" id="pf-travelers-count" value="1">
+            </div>
+          </div>
+        </div>
+        <!-- PASSENGER + CLASS MODAL -->
+        <div class="pax-backdrop" id="pax-backdrop"></div>
+        <div class="pax-modal" id="pax-modal">
+          <button class="pax-close" id="pax-close">✕</button>
+
+          <div class="pax-rows">
+            <div class="pax-row">
+              <div class="pax-info">
+                <div class="pax-type">Adults</div>
+                <div class="pax-age">12+ years</div>
+              </div>
+              <div class="pax-counter">
+                <button class="pax-btn" data-type="adults" data-dir="-">−</button>
+                <span class="pax-num" id="count-adults">1</span>
+                <button class="pax-btn" data-type="adults" data-dir="+">+</button>
+              </div>
+            </div>
+            <div class="pax-row">
+              <div class="pax-info">
+                <div class="pax-type">Children</div>
+                <div class="pax-age">2–11 years</div>
+              </div>
+              <div class="pax-counter">
+                <button class="pax-btn" data-type="children" data-dir="-">−</button>
+                <span class="pax-num" id="count-children">0</span>
+                <button class="pax-btn" data-type="children" data-dir="+">+</button>
+              </div>
+            </div>
+            <div class="pax-row">
+              <div class="pax-info">
+                <div class="pax-type">Infants</div>
+                <div class="pax-age">0–2 years</div>
+              </div>
+              <div class="pax-counter">
+                <button class="pax-btn" data-type="infants" data-dir="-">−</button>
+                <span class="pax-num" id="count-infants">0</span>
+                <button class="pax-btn" data-type="infants" data-dir="+">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pax-error" id="pax-error"></div>
+
+          <div class="pax-divider"></div>
+
+          <div class="pax-classes">
+            <div class="pax-class-option" data-class="First">First</div>
+            <div class="pax-class-option active" data-class="Business">Business <span class="pax-check">✓</span></div>
+          </div>
+
+          <div class="pax-divider"></div>
+
+          <button class="pax-apply" id="pax-apply">Apply</button>
+        </div>
+
+        <div class="p-form-fields">
+          <div class="p-form-group p-form-full">
+            <input type="text" placeholder="From city or airport" id="pf-from" autocomplete="off">
+            <span class="p-form-swap" id="swap-cities" title="Swap cities">⇅</span>
+            <div class="sv-dropdown" id="dd-from"></div>
+          </div>
+          <div class="p-form-group p-form-full">
+            <input type="text" placeholder="Going to, airport or city" id="pf-to" autocomplete="off">
+            <div class="sv-dropdown" id="dd-to"></div>
+          </div>
+          <div class="p-form-date-row">
+            <div class="p-form-group">
+              <label>Departure</label>
+              <input type="text" id="pf-depart" placeholder="Select date" readonly>
+            </div>
+            <div class="p-form-group">
+              <label>Return</label>
+              <input type="text" id="pf-return" placeholder="Select date" readonly>
+            </div>
+          </div>
+        </div>
+
+        <button class="p-form-submit" id="search-flight-btn">Check Your Price <span>›</span></button>
+
+        <div class="p-form-divider">
+          <span class="p-form-divider-line"></span>
+          <span class="p-form-divider-text">or</span>
+          <span class="p-form-divider-line"></span>
+        </div>
+
+        <div class="pill-phone">
+          <div class="pill-avatar">
+            <img src="images/customer.png" alt="Agent">
+          </div>
+          <div class="pill-info">
+            <a href="tel:+917738836277" class="pill-num">Call us +91 7738836277</a>
+            <span class="pill-label">Phone-exclusive savings</span>
+          </div>
+          <div class="pill-divider"></div>
+          <a href="tel:+917738836277" class="pill-icon" aria-label="Call">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path
+                d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Hero Content -->
+      <div class="p-hero-right">
+        <h1>Experience<br><span class="highlight">Business Class</h1>
+        <p class="p-hero-sub">
+          <strong>Save <span class="glow-text">25–60%</span> on Business and First class fares.</strong><br>
+          Access exclusive, unpublished premium flight deals.
+        </p>
+
+        <!-- Smart Voyage Exclusive Features -->
+        <div class="p-hero-exclusives">
+          <div class="p-exclusive-item">
+            <span class="p-exclusive-icon">🚘</span>
+            <span>Complimentary <strong class="glow-text-gold">Luxury Sedan</strong> airport pickup & drop</span>
+          </div>
+          <div class="p-exclusive-item">
+            <span class="p-exclusive-icon">✦</span>
+            <span>Exclusive deals on <strong>Emirates, Singapore Airlines, Lufthansa</strong></span>
+          </div>
+        </div>
+
+        <!-- Trustpilot Badge -->
+        <div class="p-hero-trustpilot">
+          <div class="p-tp-stars">
+            <span class="tp-star">★</span><span class="tp-star">★</span><span class="tp-star">★</span><span
+              class="tp-star">★</span><span class="tp-star half">★</span>
+          </div>
+          <span class="p-tp-count">12,768+ reviews on</span>
+          <img src="https://cdn.trustpilot.net/brand-assets/4.3.0/logo-white.svg" alt="Trustpilot"
+            style="height: 25px; width:auto; vertical-align:middle;">
+        </div>
+
+        <!-- Trust Certification Badges -->
+        <div class="p-hero-badges">
+          <img src="images/IATA.png" alt="IATA">
+          <img src="images/IATAN.png" alt="IATAN">
+          <img src="images/ARC.png" alt="ARC">
+          <img src="images/BBB.png" alt="BBB">
+        </div>
+      </div>
+    </div>
+
+    <!-- "Have a question?" floating bubble (like business-class.com) -->
+    <!-- <div class="p-hero-chat-bubble" id="chat-bubble">
+      <div class="p-chat-icon">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="#c4956a">
+          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+        </svg>
+      </div>
+      <div class="p-chat-text">
+        <strong>Have a question?</strong> Our travel<br>experts are standing by.
+      </div>
+    </div> -->
+  </section>
+
+  <!-- MOBILE BOOKING SECTION (visible only on mobile, after hero) -->
+  <section class="p-mobile-booking" id="p-mobile-booking">
+    <div class="container">
+      <div class="p-mb-header">
+        <h2 class="p-mb-title">Book Your <span>Premium Flight</span></h2>
+        <p class="p-mb-sub">Search exclusive business class fares or call us for phone-only savings.</p>
+      </div>
+
+      <div class="p-mb-card">
+        <div class="p-mb-form-top-row">
+          <!-- Trip Type Custom Select -->
+          <div class="p-mb-select-wrap">
+            <div class="pf-custom-select" id="pmb-trip-select">
+              <div class="pf-select-trigger">
+                <span id="pmb-trip-label">Round-Trip</span>
+                <svg width="10" height="6" viewBox="0 0 10 6">
+                  <path d="M0 0l5 6 5-6z" fill="#999" />
+                </svg>
+              </div>
+              <div class="pf-select-dropdown">
+                <div class="pf-select-option active" data-value="Round-Trip">Round-Trip</div>
+                <div class="pf-select-option" data-value="One-Way">One-Way</div>
+                <div class="pf-select-option" data-value="Multi-City">Multi-City</div>
+              </div>
+              <input type="hidden" id="pmb-trip-type" value="Round-Trip">
+            </div>
+          </div>
+
+          <!-- Class + Passengers Custom Select -->
+          <div class="p-mb-select-wrap">
+            <div class="pf-custom-select" id="pmb-class-select">
+              <div class="pf-select-trigger">
+                <span id="pmb-class-label">Business · 1 Traveler</span>
+                <svg width="10" height="6" viewBox="0 0 10 6">
+                  <path d="M0 0l5 6 5-6z" fill="#999" />
+                </svg>
+              </div>
+              <input type="hidden" id="pmb-class" value="Business">
+              <input type="hidden" id="pmb-travelers-count" value="1">
+            </div>
+          </div>
+        </div>
+
+        <!-- MOBILE Passenger + Class Modal -->
+        <div class="pax-backdrop" id="pmb-pax-backdrop"></div>
+        <div class="pax-modal" id="pmb-pax-modal">
+          <button class="pax-close" id="pmb-pax-close">✕</button>
+          <div class="pax-rows">
+            <div class="pax-row">
+              <div class="pax-info">
+                <div class="pax-type">Adults</div>
+                <div class="pax-age">12+ years</div>
+              </div>
+              <div class="pax-counter">
+                <button class="pax-btn" data-type="adults" data-dir="-">−</button>
+                <span class="pax-num" id="pmb-count-adults">1</span>
+                <button class="pax-btn" data-type="adults" data-dir="+">+</button>
+              </div>
+            </div>
+            <div class="pax-row">
+              <div class="pax-info">
+                <div class="pax-type">Children</div>
+                <div class="pax-age">2–11 years</div>
+              </div>
+              <div class="pax-counter">
+                <button class="pax-btn" data-type="children" data-dir="-">−</button>
+                <span class="pax-num" id="pmb-count-children">0</span>
+                <button class="pax-btn" data-type="children" data-dir="+">+</button>
+              </div>
+            </div>
+            <div class="pax-row">
+              <div class="pax-info">
+                <div class="pax-type">Infants</div>
+                <div class="pax-age">0–2 years</div>
+              </div>
+              <div class="pax-counter">
+                <button class="pax-btn" data-type="infants" data-dir="-">−</button>
+                <span class="pax-num" id="pmb-count-infants">0</span>
+                <button class="pax-btn" data-type="infants" data-dir="+">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="pax-error" id="pmb-pax-error"></div>
+          <div class="pax-divider"></div>
+          <div class="pax-classes">
+            <div class="pax-class-option" data-class="First">First</div>
+            <div class="pax-class-option active" data-class="Business">Business <span class="pax-check">✓</span></div>
+          </div>
+          <div class="pax-divider"></div>
+          <button class="pax-apply" id="pmb-pax-apply">Apply</button>
+        </div>
+
+        <div class="p-mb-fields">
+          <div class="p-mb-group p-mb-full">
+            <input type="text" placeholder="From city or airport" id="pmb-from" autocomplete="off">
+            <span class="p-mb-swap" id="pmb-swap-cities" title="Swap cities">⇅</span>
+            <div class="sv-dropdown" id="pmb-dd-from"></div>
+          </div>
+          <div class="p-mb-group p-mb-full">
+            <input type="text" placeholder="Going to, airport or city" id="pmb-to" autocomplete="off">
+            <div class="sv-dropdown" id="pmb-dd-to"></div>
+          </div>
+          <div class="p-mb-date-row">
+            <div class="p-mb-group">
+              <label>DEPARTURE</label>
+              <input type="text" id="pmb-depart" placeholder="Select date" readonly>
+            </div>
+            <div class="p-mb-group">
+              <label>RETURN</label>
+              <input type="text" id="pmb-return" placeholder="Select date" readonly>
+            </div>
+          </div>
+        </div>
+
+        <button class="p-mb-submit" id="pmb-search-btn">Check Your Price <span>›</span></button>
+
+        <div class="p-mb-divider">
+          <span class="p-mb-divider-line"></span>
+          <span class="p-mb-divider-text">or</span>
+          <span class="p-mb-divider-line"></span>
+        </div>
+
+        <div class="p-mb-pill-phone">
+          <div class="p-mb-pill-avatar">
+            <img src="images/customer.png" alt="Agent">
+          </div>
+          <div class="p-mb-pill-info">
+            <a href="tel:+917738836277" class="p-mb-pill-num">Call us +91 7738836277</a>
+            <span class="p-mb-pill-label">Phone-exclusive savings</span>
+          </div>
+          <div class="p-mb-pill-divider"></div>
+          <a href="tel:+917738836277" class="p-mb-pill-icon" aria-label="Call">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+              <path
+                d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE NAV -->
+  <div class="p-mobile-nav" id="p-mobile-nav">
+    <button class="p-mobile-close" id="p-mobile-close">✕</button>
+    <a href="#p-hero" class="p-mob-link">Home</a>
+    <a href="#p-deals" class="p-mob-link">Deals</a>
+    <a href="#p-offer" class="p-mob-link">About</a>
+    <a href="#p-faq" class="p-mob-link">FAQ</a>
+    <a href="#p-contact" class="p-mob-link">Contact</a>
+    <a href="https://wa.me/917738836277" target="_blank" class="p-mob-link">Book Now →</a>
+  </div>
+
+  <!-- AIRLINES SECTION -->
+  <section class="p-airlines">
+    <div class="container">
+      <h2 class="p-airlines-title">Customized flights with top airlines</h2>
+      <p class="p-airlines-sub">Fly Qatar, Emirates, Lufthansa and more with routes designed for you.</p>
+      <div class="p-airlines-logos">
+        <img src="images/qatar.png" alt="Qatar Airways">
+        <img src="images/turkish.png" alt="Turkish Airlines">
+        <img src="images/emirates.png" alt="Emirates">
+        <img src="images/lufthansa.png" alt="Lufthansa">
+        <img src="images/singapore_logo.png" alt="Singapore Airlines">
+      </div>
+      <div class="p-airlines-track-wrap">
+        <div class="p-airlines-track">
+          <img src="images/qatar.png" alt="Qatar Airways">
+          <img src="images/turkish.png" alt="Turkish Airlines">
+          <img src="images/emirates.png" alt="Emirates">
+          <img src="images/lufthansa.png" alt="Lufthansa">
+          <img src="images/singapore_logo.png" alt="Singapore Airlines">
+          <img src="images/qatar.png" alt="Qatar Airways">
+          <img src="images/turkish.png" alt="Turkish Airlines">
+          <img src="images/emirates.png" alt="Emirates">
+          <img src="images/lufthansa.png" alt="Lufthansa">
+          <img src="images/singapore_logo.png" alt="Singapore Airlines">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- BEST DEALS -->
+  <section class="p-deals" id="p-deals">
+    <div class="container">
+      <div class="p-deals-label p-reveal"><span class="line"></span><span
+          style="font-family:'Playfair Display',serif;font-size:28px;font-weight:600;letter-spacing:2px;text-transform:uppercase;">Best
+          Deals</span><span class="line"></span></div>
+      <div class="p-deals-sub p-reveal">Save 25–60%* on Business Class Travel</div>
+      <div class="p-deals-grid">
+        <div class="p-deal-card p-reveal">
+          <div class="p-deal-image"><img src="images/singapore.png" alt="Singapore" loading="lazy"></div>
+          <div class="p-deal-info">
+            <div class="p-deal-city">Singapore</div>
+            <div class="p-deal-save">Save 25–60%* on Business Class</div>
+            <div class="p-deal-price">₹42,999*</div>
+            <a href="https://wa.me/917738836277" target="_blank" class="p-deal-btn">View Deals</a>
+          </div>
+        </div>
+        <div class="p-deal-card p-reveal">
+          <div class="p-deal-image"><img src="images/london.png" alt="London" loading="lazy"></div>
+          <div class="p-deal-info">
+            <div class="p-deal-city">London</div>
+            <div class="p-deal-save">Save 25–60%* on Business Class</div>
+            <div class="p-deal-price">₹89,999*</div>
+            <a href="https://wa.me/917738836277" target="_blank" class="p-deal-btn">View Deals</a>
+          </div>
+        </div>
+        <div class="p-deal-card p-reveal">
+          <div class="p-deal-image"><img src="images/usa.png" alt="New York" loading="lazy"></div>
+          <div class="p-deal-info">
+            <div class="p-deal-city">New York</div>
+            <div class="p-deal-save">Save 25–60%* on First Class</div>
+            <div class="p-deal-price">₹1,49,999*</div>
+            <a href="https://wa.me/917738836277" target="_blank" class="p-deal-btn">View Deals</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- POPULAR DESTINATIONS -->
+  <section class="p-destinations" id="p-destinations">
+    <div class="container">
+      <div class="p-dest-header">
+        <div class="p-dest-header-left">
+          <h2 class="p-dest-title">Popular destinations</h2>
+          <p class="p-dest-sub">Average prices based on current month statistics</p>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="p-dest-tabs">
+        <button class="p-dest-tab active" data-region="europe">Europe</button>
+        <button class="p-dest-tab" data-region="oceania">Oceania</button>
+        <button class="p-dest-tab" data-region="middleeast">Middle East</button>
+        <button class="p-dest-tab" data-region="asia">Asia</button>
+        <button class="p-dest-tab" data-region="africa">Africa</button>
+        <button class="p-dest-tab" data-region="indian">Indian Subcontinent</button>
+        <button class="p-dest-tab" data-region="northafrica">Northern Africa</button>
+      </div>
+
+      <div class="p-dest-cards-outer">
+        <div class="p-dest-cards" id="dest-cards">
+
+          <!-- EUROPE -->
+          <div class="p-dest-region" data-region="europe">
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" alt="Paris, France">
+                <span class="p-dest-badge">22% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Paris, France</div>
+                <div class="p-dest-regular">Regular price <s>₹1,20,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹93,600<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80" alt="London, UK">
+                <span class="p-dest-badge">18% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">London, UK</div>
+                <div class="p-dest-regular">Regular price <s>₹1,10,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹89,999<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80"
+                  alt="Frankfurt, Germany">
+                <span class="p-dest-badge">25% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Frankfurt, Germany</div>
+                <div class="p-dest-regular">Regular price <s>₹1,05,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹78,750<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OCEANIA -->
+          <div class="p-dest-region hidden" data-region="oceania">
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=80"
+                  alt="Sydney, Australia">
+                <span class="p-dest-badge">20% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Sydney, Australia</div>
+                <div class="p-dest-regular">Regular price <s>₹1,80,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹1,44,000<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=600&q=80"
+                  alt="Auckland, New Zealand">
+                <span class="p-dest-badge">15% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Auckland, New Zealand</div>
+                <div class="p-dest-regular">Regular price <s>₹2,00,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹1,70,000<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1545044846-351ba102b6d5?w=600&q=80"
+                  alt="Melbourne, Australia">
+                <span class="p-dest-badge">28% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Melbourne, Australia</div>
+                <div class="p-dest-regular">Regular price <s>₹1,75,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹1,26,000<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MIDDLE EAST -->
+          <div class="p-dest-region hidden" data-region="middleeast">
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80" alt="Dubai, UAE">
+                <span class="p-dest-badge">30% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Dubai, UAE</div>
+                <div class="p-dest-regular">Regular price <s>₹55,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹38,500<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://t4.ftcdn.net/jpg/01/95/97/53/360_F_195975314_qORv0wnTg5Wbzbns0iSOR69huHJjKog1.jpg"
+                  alt="Doha, Qatar">
+                <span class="p-dest-badge">24%
+                  OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Doha, Qatar</div>
+                <div class="p-dest-regular">Regular price <s>₹60,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹45,600<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img
+                  src="https://media.istockphoto.com/id/1143221045/photo/beautiful-high-angle-view-of-modern-skyscrapers-in-abu-dhabi-taken-from-a-helicopter-marina.jpg?s=612x612&w=0&k=20&c=Ymri3v25e87nF00FKYZW9UJ5z2LyblUBoHsOosw-CDM="
+                  alt="Abu Dhabi, UAE">
+                <span class="p-dest-badge">20% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Abu Dhabi, UAE</div>
+                <div class="p-dest-regular">Regular price <s>₹52,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹41,600<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASIA -->
+          <div class="p-dest-region hidden" data-region="asia">
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=80" alt="Singapore">
+                <span class="p-dest-badge">15% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Singapore</div>
+                <div class="p-dest-regular">Regular price <s>₹50,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹42,999<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img
+                  src="https://media.istockphoto.com/id/2215493359/photo/aerial-view-of-tokyo-cityscape-with-fuji-mountain-in-japan.jpg?s=612x612&w=0&k=20&c=2f5uTGsHR0ORPYezw15Qrlgl0OaHTiKGkC7WjtmWXgA="
+                  alt="Tokyo, Japan">
+                <span class="p-dest-badge">22% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Tokyo, Japan</div>
+                <div class="p-dest-regular">Regular price <s>₹95,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹74,100<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img
+                  src="https://images.pexels.com/photos/32105270/pexels-photo-32105270.jpeg?cs=srgb&dl=pexels-khanishaan-32105270.jpg&fm=jpg"
+                  alt="Bangkok, Thailand">
+                <span class="p-dest-badge">32% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Bangkok, Thailand</div>
+                <div class="p-dest-regular">Regular price <s>₹45,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹30,600<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AFRICA -->
+          <div class="p-dest-region hidden" data-region="africa">
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1611348524140-53c9a25263d6?w=600&q=80" alt="Nairobi, Kenya">
+                <span class="p-dest-badge">26% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Nairobi, Kenya</div>
+                <div class="p-dest-regular">Regular price <s>₹80,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹59,200<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=600&q=80"
+                  alt="Cape Town, South Africa">
+                <span class="p-dest-badge">20% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Cape Town, S. Africa</div>
+                <div class="p-dest-regular">Regular price <s>₹95,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹76,000<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1618945524163-32451704cbb8?w=600&q=80" alt="Lagos, Nigeria">
+                <span class="p-dest-badge">18% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Lagos, Nigeria</div>
+                <div class="p-dest-regular">Regular price <s>₹88,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹72,160<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INDIAN SUBCONTINENT — Mumbai, Delhi, Kolkata + neighbours -->
+          <div class="p-dest-region hidden" data-region="indian">
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1562979314-bee7453e911c?w=600&q=80" alt="Mumbai, India">
+                <span class="p-dest-badge">20% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Mumbai, India</div>
+                <div class="p-dest-regular">Regular price <s>₹28,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹22,400<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1597040663342-45b6af3d91a5?w=600&q=80" alt="Delhi, India">
+                <span class="p-dest-badge">25% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Delhi, India</div>
+                <div class="p-dest-regular">Regular price <s>₹24,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹18,000<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1558431382-27e303142255?w=600&q=80" alt="Kolkata, India">
+                <span class="p-dest-badge">18% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Kolkata, India</div>
+                <div class="p-dest-regular">Regular price <s>₹20,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹16,400<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://t3.ftcdn.net/jpg/05/53/80/46/360_F_553804628_lq0I8lw9gVyHZx8lY5XPCKImbNb8wQ6Z.jpg"
+                  alt="Colombo, Sri Lanka">
+                <span class="p-dest-badge">20% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Colombo, Sri Lanka</div>
+                <div class="p-dest-regular">Regular price <s>₹28,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹22,400<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&q=80" alt="Kathmandu, Nepal">
+                <span class="p-dest-badge">25% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Kathmandu, Nepal</div>
+                <div class="p-dest-regular">Regular price <s>₹22,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹16,500<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img
+                  src="https://images.pexels.com/photos/32105270/pexels-photo-32105270.jpeg?cs=srgb&dl=pexels-khanishaan-32105270.jpg&fm=jpg"
+                  alt="Dhaka, Bangladesh">
+                <span class="p-dest-badge">18% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Dhaka, Bangladesh</div>
+                <div class="p-dest-regular">Regular price <s>₹20,000</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹16,400<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NORTHERN AFRICA -->
+          <div class="p-dest-region hidden" data-region="northafrica">
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img
+                  src="https://www.journalofnomads.com/wp-content/uploads/2020/01/Ait-Ben-Haddou-Morocco-1024x768.jpg"
+                  alt=" Casablanca, Morocco">
+                <span class="p-dest-badge">18% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Casablanca, Morocco</div>
+                <div class="p-dest-regular">Regular price <s>₹2,86,500</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹2,34,930<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?w=600&q=80"
+                  alt="Algiers, Algeria">
+                <span class="p-dest-badge">32% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Algiers, Algeria</div>
+                <div class="p-dest-regular">Regular price <s>₹2,87,492</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹1,95,494<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+            <div class="p-dest-card">
+              <div class="p-dest-img-wrap">
+                <img
+                  src="https://thumbs.dreamstime.com/b/sidi-bou-said-boasts-luxury-restaurants-amazing-viewpoints-overlooking-its-beaches-port-cap-bon-seen-horizon-tunisia-100203689.jpg"
+                  alt="Tunis, Tunisia">
+                <span class="p-dest-badge">36% OFF</span>
+              </div>
+              <div class="p-dest-info">
+                <div class="p-dest-city">Tunis, Tunisia</div>
+                <div class="p-dest-regular">Regular price <s>₹3,26,892</s></div>
+                <div class="p-dest-bottom">
+                  <div class="p-dest-price">₹2,09,211<sup>*</sup></div>
+                  <a href="tel:+917738836277" class="p-dest-btn">View ›</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end dest-cards -->
+      </div><!-- end outer -->
+
+      <div style="margin-top: 36px;">
+        <a href="tel:+917738836277" class="p-dest-more">More Deals ›</a>
+      </div>
+    </div>
+  </section>
+  <!-- FLOATING GLASS TOGGLE -->
+  <div class="glass-toggle" id="class-toggle" data-active="business">
+    <a href="premium.html" class="glass-toggle-btn active">Business</a>
+    <a href="economy.html" class="glass-toggle-btn">Economy</a>
+    <div class="glass-toggle-slider"></div>
+  </div>
+
+  <!-- TRUSTED REVIEWS SECTION -->
+  <section class="p-trusted" id="p-reviews">
+    <div class="container">
+      <div class="p-trusted-header p-reveal">
+        <h2 class="p-trusted-title"><span class="p-trusted-green">Trusted</span> by Thousands of Business Class
+          Travelers Worldwide</h2>
+        <p class="p-trusted-sub">Our service is built on trust, backed by leading security technologies</p>
+      </div>
+
+      <div class="p-trusted-outer p-reveal">
+        <button class="p-trusted-arrow" id="rev-prev">&#8249;</button>
+
+        <div class="p-trusted-box">
+          <div class="p-trusted-tp-row">
+            <div class="p-trusted-tp-brand">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#00b67a">
+                <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
+              </svg>
+              <span class="p-trusted-tp-name">Trustpilot</span>
+            </div>
+            <div class="p-trusted-tp-stars">
+              <span class="p-trusted-star">★</span>
+              <span class="p-trusted-star">★</span>
+              <span class="p-trusted-star">★</span>
+              <span class="p-trusted-star">★</span>
+              <span class="p-trusted-star half">★</span>
+            </div>
+            <span class="p-trusted-inline-row">
+              <span class="p-trusted-excellent">Excellent</span>
+              <span class="p-trusted-divider">|</span>
+              <span class="p-trusted-rated">Rated 4.7</span>
+            </span>
+          </div>
+
+          <!-- ONE rev-grid, properly wrapped -->
+          <div class="p-trusted-reviews-grid-wrap">
+            <div class="p-trusted-reviews-grid" id="rev-grid"></div>
+          </div>
+        </div>
+
+        <button class="p-trusted-arrow" id="rev-next">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE OFFER (Dark Section) -->
+  <!-- <section class="p-offer" id="p-offer">
+    <div class="container">
+      <h2 class="p-offer-title p-reveal">What We Offer</h2>
+      <p class="p-offer-text p-reveal">Our travel specialists collaborate directly with major airlines to secure
+        discount business class tickets and exclusive access to first class flights. Whether you're traveling for
+        business or leisure, we tailor premium itineraries to your destination and dates, turning exceptional comfort
+        into an accessible experience.</p>
+      <h2 class="p-offer-title p-reveal">Why Book With Smart Voyage?</h2>
+      <p class="p-offer-text p-reveal">With exclusive access to unpublished fares, we make luxury travel more
+        affordable. Our strong airline partnerships allow us to secure discounted business class tickets, saving you
+        time and money without compromising on comfort. Beyond the savings, you'll enjoy world-class lounges, priority
+        check-in, and a seamless booking experience tailored to your needs — all with the support of our 24/7 travel
+        specialists.</p>
+      <a href="https://wa.me/917738836277" target="_blank" class="p-offer-btn p-reveal">Request A Quote</a>
+    </div>
+  </section> -->
+
+  <!-- HOW IT WORKS -->
+  <section class="p-how" id="p-how">
+    <div class="container">
+      <h2 class="p-section-title p-reveal">How It Works</h2>
+      <p class="p-section-sub p-reveal">Smart Voyage offers hassle-free booking for front-of-cabin travel at a great
+        price & stress-free.</p>
+      <div class="p-how-grid">
+        <div class="p-how-item p-reveal">
+          <div class="p-how-num">1</div>
+          <h3>Place a Booking Request</h3>
+          <p>Share your travel destination and preferred timing via WhatsApp or our form. It takes less than a minute.
+          </p>
+        </div>
+        <div class="p-how-item p-reveal">
+          <div class="p-how-num">2</div>
+          <h3>Work With an Agent</h3>
+          <p>You're connected to your personal travel concierge who finds and books the perfect flight at the best
+            price.</p>
+        </div>
+        <div class="p-how-item p-reveal">
+          <div class="p-how-num">3</div>
+          <h3>Fly in Style</h3>
+          <p>Fly comfortably to your destination, arriving well-rested and with extra savings in your pocket.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM BENEFITS -->
+  <section class="p-benefits" id="p-benefits">
+    <div class="container">
+      <h2 class="p-section-title p-reveal">Premium Benefits</h2>
+      <p class="p-section-sub p-reveal">Every booking comes with privileges that redefine air travel.</p>
+      <div class="p-benefits-grid">
+        <div class="p-benefit-card p-reveal">
+          <span class="p-benefit-icon">🚘</span>
+          <h3>Complimentary Luxury Sedan</h3>
+          <p>Airport pickup & drop in a premium sedan — included with every booking.</p>
+        </div>
+        <div class="p-benefit-card p-reveal">
+          <span class="p-benefit-icon">💎</span>
+          <h3>Up to 25% Off Market Price</h3>
+          <p>Exclusive negotiated rates that you won't find on any public platform.</p>
+        </div>
+        <div class="p-benefit-card p-reveal">
+          <span class="p-benefit-icon">👤</span>
+          <h3>Personalized Booking Support</h3>
+          <p>A dedicated travel concierge to handle every detail of your journey.</p>
+        </div>
+        <div class="p-benefit-card p-reveal">
+          <span class="p-benefit-icon">✨</span>
+          <h3>First Class Upgrade</h3>
+          <p>Lucky customers receive a complimentary upgrade to First Class.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="p-faq" id="p-faq">
+    <div class="container">
+      <h2 class="p-section-title p-reveal">Frequently Asked Questions</h2>
+      <div class="p-faq-grid">
+        <div class="p-faq-item p-reveal">
+          <div class="p-faq-q">What does Smart Voyage offer? <span class="arrow">∨</span></div>
+          <div class="p-faq-a">We specialize in discounted Business and First Class flight tickets on premium airlines
+            like Singapore Airlines, Emirates, Lufthansa, and Swiss. Every booking includes complimentary luxury sedan
+            airport transfers.</div>
+        </div>
+        <div class="p-faq-item p-reveal">
+          <div class="p-faq-q">Why fly business or first class with us? <span class="arrow">∨</span></div>
+          <div class="p-faq-a">We offer up to 25% off market prices through exclusive airline partnerships. You get all
+            the premium benefits — lounge access, priority boarding, lie-flat seats — at a fraction of the retail cost.
+          </div>
+        </div>
+        <div class="p-faq-item p-reveal">
+          <div class="p-faq-q">How do I book through Smart Voyage? <span class="arrow">∨</span></div>
+          <div class="p-faq-a">Simply click "Book Now" to connect with us on WhatsApp, or fill out our contact form. A
+            dedicated travel concierge will get back to you within minutes with the best available fares.</div>
+        </div>
+        <div class="p-faq-item p-reveal">
+          <div class="p-faq-q">How can I pay for my booking? <span class="arrow">∨</span></div>
+          <div class="p-faq-a">We accept all major payment methods including bank transfers, credit cards, and UPI. Our
+            team will guide you through the payment process for a seamless experience.</div>
+        </div>
+        <div class="p-faq-item p-reveal">
+          <div class="p-faq-q">What routes are available? <span class="arrow">∨</span></div>
+          <div class="p-faq-a">We cover India ⇄ Singapore, India ⇄ London, London ⇄ USA, and many more international
+            routes. Contact us for the latest deals on your preferred destination.</div>
+        </div>
+        <div class="p-faq-item p-reveal">
+          <div class="p-faq-q">How can I contact Smart Voyage? <span class="arrow">∨</span></div>
+          <div class="p-faq-a">Reach us 24/7 via WhatsApp at +91 93243 69143, or email us at
+            smartvoyageofficial@gmail.com. Our team responds within minutes.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- SOCIAL PROOF -->
+  <section class="p-proof p-reveal">
+    <div class="container">
+      <div class="p-proof-label">Trusted by Premium Clients</div>
+      <div class="p-clients-row">
+        <div class="p-client-item">
+          <img src="images/bright_outdoors.png" alt="Bright Outdoor">
+        </div>
+        <div class="p-client-item">
+          <img src="images/asian_tours.png" alt="Asian Tours">
+        </div>
+        <div class="p-client-item">
+          <img
+            src="https://img.staticmb.com/mbimages/photo_dir/developer/original_images/65097/1637837835398-Skyline-logo-blk-new.png"
+            alt="Skyline Group">
+        </div>
+        <div class="p-client-item">
+          <img src="images/the_atlantic.png" alt="The Atlantic">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTACT -->
+  <section class="p-contact" id="p-contact">
+    <div class="container">
+      <h2 class="p-contact-title p-reveal">Contact Us</h2>
+      <p class="p-contact-desc p-reveal">Want to travel business class for less? Contact our experts for exclusive
+        deals.<br>
+        Submit your details below for a call back in 15 minutes and save up to 60%*OFF!</p>
+
+      <div class="p-contact-cards p-reveal">
+        <!-- Chat -->
+        <div class="p-contact-card">
+          <div class="p-contact-card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+              <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+            </svg>
+          </div>
+          <h3 class="p-contact-card-title">Chat</h3>
+          <p class="p-contact-card-text">If you have any urgent questions, please write to our chat, our agents will
+            help you as soon as possible.</p>
+          <div class="p-contact-card-divider"></div>
+          <a href="https://wa.me/917738836277" target="_blank" class="p-contact-card-link">Start a chat ›</a>
+        </div>
+
+        <!-- Phone -->
+        <div class="p-contact-card">
+          <div class="p-contact-card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+              <path
+                d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
+            </svg>
+          </div>
+          <h3 class="p-contact-card-title">Phone Call or Callback</h3>
+          <p class="p-contact-card-text">Get in touch with our customer support directly via India toll free: <a
+              href="tel:+917738836277" class="p-contact-inline-link"><strong>+91 77388 36277</strong></a> or request a
+            Callback</p>
+          <div class="p-contact-card-divider"></div>
+          <a href="tel:+917738836277" class="p-contact-card-link">Immediate Callback ›</a>
+        </div>
+
+        <!-- Email -->
+        <div class="p-contact-card">
+          <div class="p-contact-card-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+              <path
+                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+          </div>
+          <h3 class="p-contact-card-title">Contact via Email</h3>
+          <p class="p-contact-card-text">Send us your inquiries anytime: <a href="mailto:smartvoyageofficial@gmail.com"
+              class="p-contact-inline-link"><strong>smartvoyageofficial@gmail.com</strong></a></p>
+          <div class="p-contact-card-divider"></div>
+          <a href="mailto:smartvoyageofficial@gmail.com" class="p-contact-card-link">Send Email ›</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="p-footer">
+    <div class="container">
+      <div class="p-footer-grid">
+        <div class="p-footer-brand">
+          <div class="p-footer-logo">SMART <span>VOYAGE</span></div>
+          <p>Your trusted partner for premium business and first class travel. Exclusive rates, luxury service,
+            unmatched experience.</p>
+          <div class="p-footer-social animated-icons">
+            <a href="https://wa.me/917738836277?text=Hi%20Smart%20Voyage%2C%20I'd%20like%20to%20book%20a%20flight."
+              target="_blank" aria-label="WhatsApp" class="icon-wa"><svg width="18" height="18" viewBox="0 0 24 24"
+                fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg></a>
+            <a href="https://www.instagram.com/smart.voyage_official/" target="_blank" aria-label="Instagram"
+              class="icon-ig"><svg width="18" height="18" viewBox="0 0 24 24">
+                <defs>
+                  <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#f09433" />
+                    <stop offset="25%" style="stop-color:#e6683c" />
+                    <stop offset="50%" style="stop-color:#dc2743" />
+                    <stop offset="75%" style="stop-color:#cc2366" />
+                    <stop offset="100%" style="stop-color:#bc1888" />
+                  </linearGradient>
+                </defs>
+                <path fill="url(#ig-grad)"
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </a>
+            <a href="mailto:smartvoyageofficial@gmail.com" aria-label="Email" class="icon-mail">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" width="18"
+                height="18" alt="Gmail" style="display:block; position:relative; z-index:2;">
+            </a>
+            <a href="tel:+917738836277" aria-label="Phone" class="icon-phone"><svg width="18" height="18"
+                viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
+              </svg></a>
+          </div>
+        </div>
+        <div class="p-footer-col">
+          <h4>Information</h4>
+          <ul>
+            <li><a href="#p-faq">FAQ</a></li>
+            <li><a href="#p-contact">Contact</a></li>
+            <li><a href="#p-reviews">Reviews</a></li>
+          </ul>
+        </div>
+        <div class="p-footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#p-deals">Best Deals</a></li>
+            <li><a href="#p-offer">About Us</a></li>
+            <li><a href="#p-how">How It Works</a></li>
+          </ul>
+        </div>
+        <div class="p-footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+917738836277">+91 7738836277</a></li>
+            <li><a href="mailto:smartvoyageofficial@gmail.com">smartvoyageofficial@gmail.com</a></li>
+            <li><a href="#">Mumbai, India</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="p-footer-bottom">
+        <p>© 2026 Smart Voyage. All rights reserved.</p>
+        <p>* Savings up to 60% are based on unrestricted fares. All fares are subject to availability.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP (with pulse) -->
+  <a href="https://wa.me/917738836277" class="p-wa-float" target="_blank" rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp" id="wa-float">
+    <span class="wa-pulse-ring"></span>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+
+  <!-- PAGE TRANSITION OVERLAY -->
+  <div class="page-transition-overlay" id="page-transition"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="airports.js"></script>
+  <script src="premium.js"></script>
+</body>
+
+</html>

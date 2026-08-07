@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description"
+    content="Smart Voyage — India's most affordable flight booking service. Unmatched prices on domestic & international flights. Mumbai to Dubai from ₹9,999. Book now!">
+  <meta name="keywords"
+    content="cheap flights, affordable flights India, Mumbai flights, flight booking, Smart Voyage, budget travel">
+  <meta name="author" content="Smart Voyage">
+  <meta name="theme-color" content="#06070b">
+  <title>Smart Voyage — Fly Further. Pay Far Less. | Unmatched Flight Prices</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body>
+
+  <!-- FLOATING GLASS TOGGLE -->
+  <div class="glass-toggle" id="class-toggle" data-active="economy">
+    <a href="premium.html" class="glass-toggle-btn">Business</a>
+    <a href="economy.html" class="glass-toggle-btn active">Economy</a>
+    <div class="glass-toggle-slider"></div>
+  </div>
+
+  <!-- PAGE TRANSITION -->
+  <div class="page-transition-overlay" id="page-transition"></div>
+
+  <style>
+    .glass-toggle-eco {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      z-index: 1100;
+      display: flex;
+      gap: 0;
+      padding: 4px;
+      border-radius: 40px;
+      background: rgba(6, 7, 11, 0.55);
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      border: 1px solid rgba(191, 163, 100, 0.15);
+      box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+        0 1px 0 rgba(255, 255, 255, 0.06) inset;
+    }
+
+    .gt-btn-eco {
+      position: relative;
+      z-index: 2;
+      text-decoration: none;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 22px;
+      border-radius: 36px;
+      color: rgba(255, 255, 255, 0.45);
+      transition: color 0.35s ease, text-shadow 0.35s ease;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .gt-btn-eco.active {
+      color: #fff;
+      font-weight: 600;
+      text-shadow: 0 0 10px rgba(191, 163, 100, 0.3);
+    }
+
+    .gt-btn-eco:hover:not(.active) {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .gt-slider-eco {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: calc(50% - 4px);
+      height: calc(100% - 8px);
+      background: linear-gradient(135deg, rgba(191, 163, 100, 0.6), rgba(154, 125, 63, 0.55));
+      backdrop-filter: blur(6px);
+      border-radius: 36px;
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.15, 1), box-shadow 0.45s ease;
+      box-shadow: 0 2px 12px rgba(191, 163, 100, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+
+    /* When Business (1st link) is active, slider moves left */
+    .glass-toggle-eco[data-active="business"] .gt-slider-eco {
+      transform: translateX(-100%);
+    }
+
+    .page-transition-eco {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      background: rgba(6, 7, 11, 0.0);
+      backdrop-filter: blur(0px);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+    }
+
+    .page-transition-eco.active {
+      opacity: 1;
+      pointer-events: all;
+      background: rgba(6, 7, 11, 0.6);
+      backdrop-filter: blur(20px);
+    }
+
+    @media(max-width:768px) {
+      .glass-toggle-eco {
+        top: 14px;
+        right: 16px;
+      }
+
+      .gt-btn-eco {
+        padding: 6px 16px;
+        font-size: 12px;
+      }
+    }
+
+    /* Give nav room for toggle */
+    .nav-links {
+      padding-right: 200px !important;
+    }
+  </style>
+  <script>
+    document.querySelectorAll('.glass-toggle-btn').forEach((btn, idx) => {
+      btn.addEventListener('click', (e) => {
+        if (btn.classList.contains('active')) { e.preventDefault(); return; }
+        e.preventDefault();
+        const slider = document.querySelector('.glass-toggle-slider');
+        if (slider) slider.style.transform = idx === 0 ? 'translateX(0)' : 'translateX(100%)';
+        const overlay = document.getElementById('page-transition');
+        if (overlay) { overlay.classList.add('active'); setTimeout(() => { window.location.href = btn.href; }, 500); }
+        else { window.location.href = btn.href; }
+      });
+    });
+  </script>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo" id="nav-logo">
+        <div class="nav-logo-text">SMART<span>VOYAGE</span></div>
+        <svg class="nav-logo-plane" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold-primary)"
+          stroke-width="1.5">
+          <path d="M22 2L11 13" />
+          <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+        </svg>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#hero" class="active">Home</a>
+        <a href="#deals">Deals</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="nav-cta">Book Now</a>
+      </div>
+      <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav" id="mobile-nav">
+    <button class="mobile-close" id="mobile-close-btn" aria-label="Close menu">✕</button>
+    <a href="#hero" class="mobile-nav-link">Home</a>
+    <a href="#deals" class="mobile-nav-link">Deals</a>
+    <a href="#services" class="mobile-nav-link">Services</a>
+    <a href="#testimonials" class="mobile-nav-link">Reviews</a>
+    <a href="#contact" class="mobile-nav-link">Contact</a>
+    <a href="#contact" class="nav-cta mobile-nav-link">Book Now</a>
+  </div>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="images/hero-bg.png" alt="Aerial view of golden sunset clouds" loading="eager">
+    </div>
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="container">
+      <div class="hero-content">
+        <!-- <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          Live Deals — Prices Updated Today
+        </div> -->
+        <!-- Trust Badges Row -->
+        <div class="hero-mini-trust">
+          <div class="hero-mini-badge">
+            <div class="hero-mini-badge-icon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--bg-primary)" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <span>IATA Certified</span>
+          </div>
+
+          <div class="hero-mini-badge">
+            <div class="hero-mini-badge-icon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--bg-primary)" stroke="none">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            </div>
+            <span>4.9 Google Rating</span>
+          </div>
+
+          <div class="hero-mini-badge">
+            <div class="hero-mini-badge-icon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--bg-primary)" stroke-width="2.5">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0110 0v4" />
+              </svg>
+            </div>
+            <span>SSL Secured</span>
+          </div>
+        </div>
+        <h1 class="hero-title">
+          Fly Further.
+          <span class="gold-line">Pay Far Less.</span>
+        </h1>
+
+        <p class="hero-description">
+          India's most affordable flight booking service. We guarantee prices no competitor can match —
+          on every route, every airline, every day. Your dream trip starts here.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#contact" class="btn-primary" id="hero-book-btn">
+            ✈ Book Now
+          </a>
+          <a href="#deals" class="btn-secondary" id="hero-deals-btn">
+            View Live Deals →
+          </a>
+        </div>
+
+        <!-- Price Match Guarantee -->
+        <div class="price-match-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <path d="M9 12l2 2 4-4" />
+          </svg>
+          <span>Price Match Guarantee — Lowest fares, always.</span>
+        </div>
+
+        <div class="hero-ticker">
+          <div class="ticker-wrapper">
+            <div class="ticker-track" id="ticker-track">
+              <div class="ticker-item"><span class="route">Mumbai → Dubai</span><span class="price">₹9,999</span><span
+                  class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Delhi</span><span class="price">₹4,999</span><span
+                  class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Kerala</span><span class="price">₹3,999</span><span
+                  class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Srinagar</span><span
+                  class="price">₹5,499</span><span class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Jaipur</span><span class="price">₹4,499</span><span
+                  class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Muscat</span><span class="price">₹9,999</span><span
+                  class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Dubai</span><span class="price">₹9,999</span><span
+                  class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Delhi</span><span class="price">₹4,999</span><span
+                  class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Kerala</span><span class="price">₹3,999</span><span
+                  class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Srinagar</span><span
+                  class="price">₹5,499</span><span class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Jaipur</span><span class="price">₹4,499</span><span
+                  class="separator">•</span></div>
+              <div class="ticker-item"><span class="route">Mumbai → Muscat</span><span class="price">₹9,999</span><span
+                  class="separator">•</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </div>
+    </div>
+    </div> -->
+  </section>
+
+  <!-- ==================== STATS BAR ==================== -->
+  <section class="stats-bar reveal" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" data-count="5000" data-suffix="M+" data-format="abbr">5M+</div>
+          <div class="stat-label">Happy Travellers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-count="250" data-suffix="+">2500+</div>
+          <div class="stat-label">Routes Covered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Customer Support</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">#1</div>
+          <div class="stat-label">Unmatched Prices</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY CHOOSE US ==================== -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Why Smart Voyage</div>
+        <h2 class="section-title">Unmatched Prices.<br><span class="gold-text">Unmatched Service.</span></h2>
+        <p class="section-subtitle">We don't just promise the lowest prices — we guarantee them. Here's why
+          thousands of
+          travellers choose us.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card reveal" style="transition-delay: 0.1s">
+          <div class="feature-icon">💰</div>
+          <h3>Best Price Guarantee</h3>
+          <p>We offer the lowest prices on flights and hotels — guaranteed. No platform can compete with our rates,
+            ensuring you never miss the best deal.</p>
+        </div>
+
+        <div class="feature-card reveal" style="transition-delay: 0.2s">
+          <div class="feature-icon">🕐</div>
+          <h3>24/7 Customer Support</h3>
+          <p>Our dedicated support team is always ready to assist with any inquiries or issues, providing help
+            around
+            the clock for a stress-free experience.</p>
+        </div>
+
+        <div class="feature-card reveal" style="transition-delay: 0.3s">
+          <div class="feature-icon">⚡</div>
+          <h3>Instant Confirmations</h3>
+          <p>Get your booking confirmed instantly. Our streamlined process ensures you can secure flights and
+            accommodations in just a few clicks.</p>
+        </div>
+
+        <div class="feature-card reveal" style="transition-delay: 0.4s">
+          <div class="feature-icon">🌍</div>
+          <h3>All Routes Covered</h3>
+          <p>From domestic to international destinations, we cover 50+ routes across the globe. Wherever you want to
+            fly, we've got you covered.</p>
+        </div>
+
+        <div class="feature-card reveal" style="transition-delay: 0.5s">
+          <div class="feature-icon">🏨</div>
+          <h3>Hotel Deals Too</h3>
+          <p>Not just flights — we offer unbeatable hotel rates at top destinations. Bundle your trip for even
+            bigger
+            savings on your entire journey.</p>
+        </div>
+
+        <div class="feature-card reveal" style="transition-delay: 0.6s">
+          <div class="feature-icon">🗺️</div>
+          <h3>Custom Trip Planning</h3>
+          <p>Need a customized itinerary? Our travel experts can plan your entire trip, from flights and hotels to
+            activities and transfers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LIVE DEALS ==================== -->
+  <section class="deals" id="deals">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Live Flight Deals</div>
+        <h2 class="section-title">Today's <span class="gold-text">Best Fares</span></h2>
+        <p class="section-subtitle">Grab these exclusive prices before they're gone. All fares include taxes and are
+          available for immediate booking.</p>
+      </div>
+
+      <div class="deals-grid">
+        <!-- Deal 1: Mumbai → Dubai -->
+        <div class="deal-card reveal" style="transition-delay: 0.1s">
+          <div class="deal-card-image">
+            <img src="images/dubai.png" alt="Dubai skyline at night" loading="lazy">
+            <span class="deal-badge">Hot Deal</span>
+          </div>
+          <div class="deal-card-body">
+            <div class="deal-route">
+              <div class="deal-city">
+                <div class="deal-iata">BOM</div>
+                <div class="deal-city-name">Mumbai</div>
+              </div>
+              <div class="deal-flight-icon">
+                <div class="deal-type">One Way</div>
+                <div class="deal-flight-line">
+                  <span class="plane">✈</span>
+                </div>
+              </div>
+              <div class="deal-city">
+                <div class="deal-iata">DXB</div>
+                <div class="deal-city-name">Dubai</div>
+              </div>
+            </div>
+            <div class="deal-price-row">
+              <div>
+                <div class="deal-price-label">Starting from</div>
+                <div class="deal-price">₹9,999</div>
+              </div>
+              <a href="#contact" class="deal-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deal 2: Mumbai → Delhi -->
+        <div class="deal-card reveal" style="transition-delay: 0.2s">
+          <div class="deal-card-image">
+            <img src="images/delhi.png" alt="India Gate, New Delhi" loading="lazy">
+            <span class="deal-badge">Popular</span>
+          </div>
+          <div class="deal-card-body">
+            <div class="deal-route">
+              <div class="deal-city">
+                <div class="deal-iata">BOM</div>
+                <div class="deal-city-name">Mumbai</div>
+              </div>
+              <div class="deal-flight-icon">
+                <div class="deal-type">One Way</div>
+                <div class="deal-flight-line">
+                  <span class="plane">✈</span>
+                </div>
+              </div>
+              <div class="deal-city">
+                <div class="deal-iata">DEL</div>
+                <div class="deal-city-name">Delhi</div>
+              </div>
+            </div>
+            <div class="deal-price-row">
+              <div>
+                <div class="deal-price-label">Starting from</div>
+                <div class="deal-price">₹4,999</div>
+              </div>
+              <a href="#contact" class="deal-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deal 3: Mumbai → Kerala -->
+        <div class="deal-card reveal" style="transition-delay: 0.3s">
+          <div class="deal-card-image">
+            <img src="images/kerala.png" alt="Kerala backwaters" loading="lazy">
+            <span class="deal-badge">Best Value</span>
+          </div>
+          <div class="deal-card-body">
+            <div class="deal-route">
+              <div class="deal-city">
+                <div class="deal-iata">BOM</div>
+                <div class="deal-city-name">Mumbai</div>
+              </div>
+              <div class="deal-flight-icon">
+                <div class="deal-type">One Way</div>
+                <div class="deal-flight-line">
+                  <span class="plane">✈</span>
+                </div>
+              </div>
+              <div class="deal-city">
+                <div class="deal-iata">COK</div>
+                <div class="deal-city-name">Kerala</div>
+              </div>
+            </div>
+            <div class="deal-price-row">
+              <div>
+                <div class="deal-price-label">Starting from</div>
+                <div class="deal-price">₹3,999</div>
+              </div>
+              <a href="#contact" class="deal-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deal 4: Mumbai → Srinagar -->
+        <div class="deal-card reveal" style="transition-delay: 0.4s">
+          <div class="deal-card-image">
+            <img src="images/srinagar.png" alt="Srinagar Dal Lake" loading="lazy">
+            <span class="deal-badge">Scenic</span>
+          </div>
+          <div class="deal-card-body">
+            <div class="deal-route">
+              <div class="deal-city">
+                <div class="deal-iata">BOM</div>
+                <div class="deal-city-name">Mumbai</div>
+              </div>
+              <div class="deal-flight-icon">
+                <div class="deal-type">One Way</div>
+                <div class="deal-flight-line">
+                  <span class="plane">✈</span>
+                </div>
+              </div>
+              <div class="deal-city">
+                <div class="deal-iata">SXR</div>
+                <div class="deal-city-name">Srinagar</div>
+              </div>
+            </div>
+            <div class="deal-price-row">
+              <div>
+                <div class="deal-price-label">Starting from</div>
+                <div class="deal-price">₹5,499</div>
+              </div>
+              <a href="#contact" class="deal-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deal 5: Mumbai → Jaipur -->
+        <div class="deal-card reveal" style="transition-delay: 0.5s">
+          <div class="deal-card-image">
+            <img src="images/jaipur.png" alt="Hawa Mahal, Jaipur" loading="lazy">
+            <span class="deal-badge">Trending</span>
+          </div>
+          <div class="deal-card-body">
+            <div class="deal-route">
+              <div class="deal-city">
+                <div class="deal-iata">BOM</div>
+                <div class="deal-city-name">Mumbai</div>
+              </div>
+              <div class="deal-flight-icon">
+                <div class="deal-type">One Way</div>
+                <div class="deal-flight-line">
+                  <span class="plane">✈</span>
+                </div>
+              </div>
+              <div class="deal-city">
+                <div class="deal-iata">JAI</div>
+                <div class="deal-city-name">Jaipur</div>
+              </div>
+            </div>
+            <div class="deal-price-row">
+              <div>
+                <div class="deal-price-label">Starting from</div>
+                <div class="deal-price">₹4,499</div>
+              </div>
+              <a href="#contact" class="deal-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Deal 6: Mumbai → Muscat -->
+        <div class="deal-card reveal" style="transition-delay: 0.6s">
+          <div class="deal-card-image">
+            <img src="images/muscat.png" alt="Grand Mosque, Muscat" loading="lazy">
+            <span class="deal-badge">International</span>
+          </div>
+          <div class="deal-card-body">
+            <div class="deal-route">
+              <div class="deal-city">
+                <div class="deal-iata">BOM</div>
+                <div class="deal-city-name">Mumbai</div>
+              </div>
+              <div class="deal-flight-icon">
+                <div class="deal-type">One Way</div>
+                <div class="deal-flight-line">
+                  <span class="plane">✈</span>
+                </div>
+              </div>
+              <div class="deal-city">
+                <div class="deal-iata">MCT</div>
+                <div class="deal-city-name">Muscat</div>
+              </div>
+            </div>
+            <div class="deal-price-row">
+              <div>
+                <div class="deal-price-label">Starting from</div>
+                <div class="deal-price">₹9,999</div>
+              </div>
+              <a href="#contact" class="deal-book-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES ==================== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-layout">
+        <div class="services-left reveal-left">
+          <div class="section-label">Our Services</div>
+          <h2 class="section-title">Comprehensive Travel <span class="gold-text">Solutions</span></h2>
+          <p class="section-subtitle">From booking your flight to planning your entire trip, we handle everything so
+            you
+            can focus on making memories.</p>
+          <div style="margin-top: var(--space-xl);">
+            <a href="#contact" class="btn-primary">Get a Quote ✈</a>
+          </div>
+        </div>
+
+        <div class="services-list">
+          <div class="service-item reveal-right" style="transition-delay: 0.1s">
+            <div class="service-number">01</div>
+            <div class="service-content">
+              <h3>Flight Bookings</h3>
+              <p>Book affordable flights to your favorite destinations with our seamless booking process and
+                exclusive
+                deals on all major airlines.</p>
+            </div>
+          </div>
+
+          <div class="service-item reveal-right" style="transition-delay: 0.2s">
+            <div class="service-number">02</div>
+            <div class="service-content">
+              <h3>Hotel Reservations</h3>
+              <p>Secure comfortable accommodations at the best rates, ensuring a relaxing stay during your travels
+                at
+                hand-picked properties.</p>
+            </div>
+          </div>
+
+          <div class="service-item reveal-right" style="transition-delay: 0.3s">
+            <div class="service-number">03</div>
+            <div class="service-content">
+              <h3>Special Offers & Packages</h3>
+              <p>Take advantage of exclusive discounts and promotions on flights and hotels. Bundle deals for even
+                bigger savings.</p>
+            </div>
+          </div>
+
+          <div class="service-item reveal-right" style="transition-delay: 0.4s">
+            <div class="service-number">04</div>
+            <div class="service-content">
+              <h3>Itinerary Planning</h3>
+              <p>Let our travel experts craft a personalized itinerary covering flights, hotels, activities, and
+                transfers tailored to you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS ==================== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <div class="reveal-left">
+          <div class="section-label">Client Stories</div>
+          <h2 class="section-title">What Our Clients <span class="gold-text">Say</span></h2>
+        </div>
+        <div class="google-rating reveal-right">
+          <div class="google-stars">⭐⭐⭐⭐⭐</div>
+          <div class="google-text">
+            <svg width="18" height="18" viewBox="0 0 24 24">
+              <path fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" />
+              <path fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+              <path fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+              <path fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
+            </svg>
+            Based on Google Reviews
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal" style="transition-delay: 0.1s">
+          <div class="testimonial-quote"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M11 7.5V14H7.5C7.5 15.38 8.62 16.5 10 16.5v2c-2.76 0-5-2.24-5-5V7.5h6zm7 0V14h-3.5c0 1.38 1.12 2.5 2.5 2.5v2c-2.76 0-5-2.24-5-5V7.5h6z" />
+            </svg></div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">Wonderful and smooth experience, the team was quick and prompt. They helped me
+            manage and helped customize my itinerary amongst other things.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">K</div>
+            <div>
+              <div class="author-name">Kamran Rangari</div>
+              <div class="author-label">Google Review</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal" style="transition-delay: 0.2s">
+          <div class="testimonial-quote"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M11 7.5V14H7.5C7.5 15.38 8.62 16.5 10 16.5v2c-2.76 0-5-2.24-5-5V7.5h6zm7 0V14h-3.5c0 1.38 1.12 2.5 2.5 2.5v2c-2.76 0-5-2.24-5-5V7.5h6z" />
+            </svg></div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">Great experience! Everything from bookings to support was smooth. Definitely
+            recommend them if you want a hassle-free travel experience.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div>
+              <div class="author-name">Asad Penkar</div>
+              <div class="author-label">Google Review</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal" style="transition-delay: 0.3s">
+          <div class="testimonial-quote"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M11 7.5V14H7.5C7.5 15.38 8.62 16.5 10 16.5v2c-2.76 0-5-2.24-5-5V7.5h6zm7 0V14h-3.5c0 1.38 1.12 2.5 2.5 2.5v2c-2.76 0-5-2.24-5-5V7.5h6z" />
+            </svg></div>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">Smart Voyage offers really affordable flight tickets and exclusive deals. The
+            booking process is simple and they provide great customer support. Highly recommended for
+            budget-friendly
+            travel!</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div>
+              <div class="author-name">Safwan Parkar</div>
+              <div class="author-label">Google Review</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT FORM ==================== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-layout">
+        <div class="contact-info reveal-left">
+          <div class="section-label">Get In Touch</div>
+          <h2 class="section-title">Start Your <span class="gold-text">Journey</span></h2>
+          <p class="section-subtitle">Fill in your travel details and our team will get back to you with the best
+            possible fare within minutes. Or reach us directly:</p>
+
+          <div class="contact-details">
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">📞</div>
+              <div class="contact-detail-text">
+                <h4>Get in Touch</h4>
+                <p><a href="tel:+917738836277">+91 7738836277</a></p>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">✉️</div>
+              <div class="contact-detail-text">
+                <h4>Email Us</h4>
+                <p><a href="mailto:smartvoyageofficial@gmail.com">smartvoyageofficial@gmail.com</a></p>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">📍</div>
+              <div class="contact-detail-text">
+                <h4>Office Address</h4>
+                <p>Pearl Platinum, Ajit Glass,<br>Oshiwara Garden Road,<br>Jogeshwari (W), Mumbai - 400102</p>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">🕐</div>
+              <div class="contact-detail-text">
+                <h4>Working Hours</h4>
+                <p>24/7 — We're always available</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrapper reveal-right">
+          <div class="form-header">
+            <h3>Book Your Flight</h3>
+            <p>Get a personalized quote in minutes — no obligation.</p>
+          </div>
+
+          <form id="contact-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="form-name">Full Name <span class="required">*</span></label>
+                <input type="text" id="form-name" name="name" class="form-input" placeholder="Your full name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="form-phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="form-phone" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX"
+                  required>
+              </div>
+
+              <div class="form-group">
+                <label for="form-from">Flying From <span class="required">*</span></label>
+                <input type="text" id="form-from" name="from" class="form-input" placeholder="e.g. Mumbai" required>
+              </div>
+
+              <div class="form-group">
+                <label for="form-to">Flying To <span class="required">*</span></label>
+                <input type="text" id="form-to" name="to" class="form-input" placeholder="e.g. Dubai" required>
+              </div>
+
+              <div class="form-group">
+                <label for="form-date">Travel Date <span class="required">*</span></label>
+                <input type="text" id="form-date" name="date" class="form-input" placeholder="Select date" required
+                  readonly>
+              </div>
+
+              <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+              <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+              <script>
+                flatpickr("#form-date", {
+                  dateFormat: "d-m-Y",
+                  minDate: "today"
+                });
+              </script> -->
+              <div class="form-group">
+                <label>Trip Type</label>
+                <div class="custom-select" id="select-trip">
+                  <div class="custom-select-trigger">
+                    <span>One Way</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </div>
+                  <div class="custom-select-options">
+                    <div class="custom-select-option selected" data-value="one-way">One Way</div>
+                    <div class="custom-select-option" data-value="round-trip">Round Trip</div>
+                    <div class="custom-select-option" data-value="multi-city">Multi-City</div>
+                  </div>
+                  <input type="hidden" name="tripType" value="one-way">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Passengers</label>
+                <div class="custom-select" id="select-passengers">
+                  <div class="custom-select-trigger">
+                    <span>1 Passenger</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </div>
+                  <div class="custom-select-options">
+                    <div class="custom-select-option selected" data-value="1">1 Passenger</div>
+                    <div class="custom-select-option" data-value="2">2 Passengers</div>
+                    <div class="custom-select-option" data-value="3">3 Passengers</div>
+                    <div class="custom-select-option" data-value="4">4 Passengers</div>
+                    <div class="custom-select-option" data-value="5">5 Passengers</div>
+                    <div class="custom-select-option" data-value="6+">6+ Passengers</div>
+                  </div>
+                  <input type="hidden" name="passengers" value="1">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-submit-row">
+              <button type="submit" class="btn-submit" id="submit-btn">
+                <span class="btn-text">Send Enquiry</span>
+              </button>
+            </div>
+
+            <!-- Success Message -->
+            <div class="form-success" id="form-success">
+              <div class="success-checkmark">✓</div>
+              <h3>Enquiry Sent Successfully!</h3>
+              <p>Our team will get back to you within 15 minutes with the best available fares. You can also reach us
+                instantly on WhatsApp:</p>
+              <a href="https://wa.me/917738836277?text=Hi%20Smart%20Voyage%2C%20I'd%20like%20to%20book%20a%20flight."
+                class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"
+                  style="flex-shrink: 0;">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+                Continue on WhatsApp
+              </a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">✈</div>
+            <div class="nav-logo-text">Smart<span>Voyage</span></div>
+          </a>
+          <p>Your reliable partner for seamless travel experiences and unforgettable journeys. We guarantee the
+            lowest
+            prices on flights and hotels — no platform can compete.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/917738836277" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/smart.voyage_official/" target="_blank" rel="noopener noreferrer"
+              aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24">
+                <defs>
+                  <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#f09433" />
+                    <stop offset="25%" style="stop-color:#e6683c" />
+                    <stop offset="50%" style="stop-color:#dc2743" />
+                    <stop offset="75%" style="stop-color:#cc2366" />
+                    <stop offset="100%" style="stop-color:#bc1888" />
+                  </linearGradient>
+                </defs>
+                <path fill="url(#ig-grad)"
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </a>
+            <a href="mailto:smartvoyageofficial@gmail.com" aria-label="Email">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" width="18"
+                height="18" alt="Gmail" style="display:block;">
+            </a>
+            <a href="tel:+917738836277" aria-label="Phone">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#deals">Deals</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Flight Bookings</a></li>
+            <li><a href="#services">Hotel Reservations</a></li>
+            <li><a href="#services">Special Offers</a></li>
+            <li><a href="#services">Itinerary Planning</a></li>
+            <li><a href="#contact">Custom Trips</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Live Deal Prices</h4>
+          <ul class="footer-deals">
+            <li>
+              <span class="footer-deal-route">Mumbai → Dubai</span>
+              <span class="footer-deal-price">₹9,999</span>
+            </li>
+            <li>
+              <span class="footer-deal-route">Mumbai → Delhi</span>
+              <span class="footer-deal-price">₹4,999</span>
+            </li>
+            <li>
+              <span class="footer-deal-route">Mumbai → Kerala</span>
+              <span class="footer-deal-price">₹3,999</span>
+            </li>
+            <li>
+              <span class="footer-deal-route">Mumbai → Jaipur</span>
+              <span class="footer-deal-price">₹4,499</span>
+            </li>
+            <li>
+              <span class="footer-deal-route">Mumbai → Srinagar</span>
+              <span class="footer-deal-price">₹5,499</span>
+            </li>
+            <li>
+              <span class="footer-deal-route">Mumbai → Muscat</span>
+              <span class="footer-deal-price">₹9,999</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Smart Voyage. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== FLOATING WHATSAPP ==================== -->
+  <a href="https://wa.me/917738836277?text=Hi%20Smart%20Voyage%2C%20I'd%20like%20to%20enquire%20about%20flight%20prices."
+    class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" id="whatsapp-float">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    flatpickr("#form-date", {
+      dateFormat: "d-m-Y",
+      minDate: "today",
+      disableMobile: true,
+      allowInput: false
+    });
+  </script>
+  <script src="script.js"></script>
+  <!-- Easter Egg Plane -->
+  <div id="easter-egg" style="display:none;">
+    <div id="ee-overlay"></div>
+    <div id="ee-plane">✈</div>
+    <div id="ee-trail"></div>
+    <div id="ee-message">
+      <div id="ee-msg-icon">🌍</div>
+      <h2>The World Awaits!</h2>
+      <p>Every great journey begins with a single click ✨</p>
+      <span id="ee-tagline">— Smart Voyage</span>
+    </div>
+  </div>
+</body>
+
+</html>
