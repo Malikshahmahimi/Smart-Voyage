@@ -8,6 +8,7 @@
     content="Smart Voyage Premium — Exclusive Business & First Class flight deals. Luxury sedan pickup, up to 25% off market prices, personalized concierge service.">
   <title>Smart Voyage Premium — Business & First Class Flight Deals</title>
   <link rel="stylesheet" href="premium.css">
+  <link rel="stylesheet" href="hajj-offer-banner.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="icon" type="image/svg+xml" href="images/favicon.png">
   <!-- <svg class="nav-logo-plane" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)"
@@ -30,7 +31,8 @@
   <!-- HERO (No navbar - clean full-screen like business-class.com) -->
   <section class="p-hero" id="p-hero">
     <div class="p-hero-bg">
-      <video autoplay muted loop playsinline id="hero-video">
+      <video autoplay muted loop playsinline preload="auto" poster="images/premium-hero-bg.png"
+        id="hero-video" disableRemotePlayback disablePictureInPicture>
         <source src="images/video.mp4" type="video/mp4">
       </video>
       <img src="images/premium-hero-bg.png" alt="Premium luxury travel" loading="eager" class="p-hero-fallback">
@@ -429,6 +431,295 @@
       </div>
     </div>
   </section>
+
+  <!-- ==================== HAJJ SEPTEMBER DHAMAKA OFFER ==================== -->
+  <section class="hajj-offer" id="hajj-offer">
+    <div class="hajj-offer-bg-pattern"></div>
+
+    <!-- Admin Toggle (only visible with ?admin=true) -->
+    <button class="hajj-admin-toggle" id="hajj-admin-toggle" title="Toggle Hajj Offer Visibility">
+      <span class="hajj-admin-toggle-dot"></span>
+      <span id="hajj-toggle-text">OFFER LIVE</span>
+    </button>
+
+    <div class="hajj-container">
+
+      <!-- Featured Label -->
+      <div class="hajj-offer-header hajj-reveal">
+        <div class="hajj-featured-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#c4a344"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+          Featured Offer
+        </div>
+
+        <div class="hajj-offer-since">Since 2004 · Last 22 Years Experience</div>
+        <h2 class="hajj-offer-title">September</h2>
+        <h3 class="hajj-offer-subtitle">Dhamaka Dhamaal Offer</h3>
+
+        <!-- Route & Airlines -->
+        <div class="hajj-offer-route-row">
+          <div class="hajj-route-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            Ex Mumbai &nbsp;|&nbsp; Direct Flight: <strong>BOM–JED–BOM</strong>
+          </div>
+          <div class="hajj-airline-logos">
+            <span class="hajj-airline-pill">✈ Air India</span>
+            <span class="hajj-airline-pill">✈ IndiGo</span>
+          </div>
+          <span class="hajj-trusted-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#34d399"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+            Trusted by Thousands
+          </span>
+        </div>
+      </div>
+
+      <!-- Group Dates -->
+      <div class="hajj-groups-row hajj-reveal">
+        <div class="hajj-group-card">
+          <div class="hajj-group-label">Group 1</div>
+          <div class="hajj-group-dates">
+            <span class="hajj-group-date">14 Sep</span>
+            <span class="hajj-group-arrow">→</span>
+            <span class="hajj-group-date">28 Sep</span>
+          </div>
+        </div>
+        <div class="hajj-group-card">
+          <div class="hajj-group-label">Group 2</div>
+          <div class="hajj-group-dates">
+            <span class="hajj-group-date">21 Sep</span>
+            <span class="hajj-group-arrow">→</span>
+            <span class="hajj-group-date">05 Oct</span>
+          </div>
+        </div>
+        <div class="hajj-group-card">
+          <div class="hajj-group-label">Group 3</div>
+          <div class="hajj-group-dates">
+            <span class="hajj-group-date">28 Sep</span>
+            <span class="hajj-group-arrow">→</span>
+            <span class="hajj-group-date">12 Oct</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duration -->
+      <div style="text-align:center" class="hajj-reveal">
+        <div class="hajj-duration-pill">
+          15 Days <span class="hajj-pill-sep"></span> Direct Flight
+        </div>
+      </div>
+
+      <!-- 4 Package Cards -->
+      <div class="hajj-packages-grid hajj-reveal">
+
+        <!-- SUPER SAVER -->
+        <div class="hajj-package-card" data-tier="saver">
+          <div class="hajj-pkg-header">
+            <div class="hajj-pkg-tier-name">Super Saver</div>
+            <div class="hajj-pkg-duration">Package (15 Days)</div>
+          </div>
+          <div class="hajj-pkg-prices">
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>5 Bed</span><span class="hajj-price-val">₹76,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>4 Bed</span><span class="hajj-price-val">₹81,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>3 Bed</span><span class="hajj-price-val">₹88,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>2 Bed</span><span class="hajj-price-val">₹1,02,786/-</span></div>
+          </div>
+          <div class="hajj-pkg-hotels">
+            <div class="hajj-hotel-row hajj-hotel-makkah">
+              <div class="hajj-hotel-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+              <div class="hajj-hotel-text">
+                <div class="hajj-hotel-city">Makkah Hotel</div>
+                <div class="hajj-hotel-name">Rawafed Al Asimah or Similar</div>
+                <span class="hajj-hotel-extra free-bus">Free Bus Service</span>
+              </div>
+            </div>
+            <div class="hajj-hotel-row hajj-hotel-madina">
+              <div class="hajj-hotel-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+              <div class="hajj-hotel-text">
+                <div class="hajj-hotel-city">Madina Hotel</div>
+                <div class="hajj-hotel-name">Jood Marjan or Similar</div>
+                <span class="hajj-hotel-extra distance">900 Mtr</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BUDGET -->
+        <div class="hajj-package-card" data-tier="budget">
+          <div class="hajj-pkg-header">
+            <div class="hajj-pkg-tier-name">Budget</div>
+            <div class="hajj-pkg-duration">Package (15 Days)</div>
+          </div>
+          <div class="hajj-pkg-prices">
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>5 Bed</span><span class="hajj-price-val">₹87,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>4 Bed</span><span class="hajj-price-val">₹91,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>3 Bed</span><span class="hajj-price-val">₹1,03,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>2 Bed</span><span class="hajj-price-val">₹1,13,786/-</span></div>
+          </div>
+          <div class="hajj-pkg-hotels">
+            <div class="hajj-hotel-row hajj-hotel-makkah">
+              <div class="hajj-hotel-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+              <div class="hajj-hotel-text">
+                <div class="hajj-hotel-city">Makkah Hotel</div>
+                <div class="hajj-hotel-name">Burj Al Deafah or Similar</div>
+                <span class="hajj-hotel-extra distance">900 Mtr</span>
+              </div>
+            </div>
+            <div class="hajj-hotel-row hajj-hotel-madina">
+              <div class="hajj-hotel-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+              <div class="hajj-hotel-text">
+                <div class="hajj-hotel-city">Madina Hotel</div>
+                <div class="hajj-hotel-name">Najoom Al Madina or Similar</div>
+                <span class="hajj-hotel-extra distance">500 Mtr</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SILVER -->
+        <div class="hajj-package-card" data-tier="silver">
+          <div class="hajj-pkg-header">
+            <div class="hajj-pkg-tier-name">Silver</div>
+            <div class="hajj-pkg-duration">Package (15 Days)</div>
+          </div>
+          <div class="hajj-pkg-prices">
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>5 Bed</span><span class="hajj-price-val">₹92,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>4 Bed</span><span class="hajj-price-val">₹97,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>3 Bed</span><span class="hajj-price-val">₹1,04,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>2 Bed</span><span class="hajj-price-val">₹1,17,786/-</span></div>
+          </div>
+          <div class="hajj-pkg-hotels">
+            <div class="hajj-hotel-row hajj-hotel-makkah">
+              <div class="hajj-hotel-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+              <div class="hajj-hotel-text">
+                <div class="hajj-hotel-city">Makkah Hotel</div>
+                <div class="hajj-hotel-name">Wahat Al Deafah or Similar</div>
+                <span class="hajj-hotel-extra distance">500 Mtr</span>
+              </div>
+            </div>
+            <div class="hajj-hotel-row hajj-hotel-madina">
+              <div class="hajj-hotel-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+              <div class="hajj-hotel-text">
+                <div class="hajj-hotel-city">Madina Hotel</div>
+                <div class="hajj-hotel-name">Three Point or Similar</div>
+                <span class="hajj-hotel-extra distance">300 Mtr</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GOLD -->
+        <div class="hajj-package-card" data-tier="gold">
+          <div class="hajj-pkg-header">
+            <div class="hajj-pkg-tier-name">Gold</div>
+            <div class="hajj-pkg-duration">Package (15 Days)</div>
+          </div>
+          <div class="hajj-pkg-prices">
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>5 Bed</span><span class="hajj-price-val">₹1,05,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>4 Bed</span><span class="hajj-price-val">₹1,08,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>3 Bed</span><span class="hajj-price-val">₹1,16,786/-</span></div>
+            <div class="hajj-price-row"><span class="hajj-bed-label"><span class="hajj-bed-dot"></span>2 Bed</span><span class="hajj-price-val">₹1,28,786/-</span></div>
+          </div>
+          <div class="hajj-pkg-hotels">
+            <div class="hajj-hotel-row hajj-hotel-makkah">
+              <div class="hajj-hotel-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+              <div class="hajj-hotel-text">
+                <div class="hajj-hotel-city">Makkah Hotel</div>
+                <div class="hajj-hotel-name">Elaf Diamond / Elaf Golden or Similar</div>
+                <span class="hajj-hotel-extra distance">250 Mtr</span>
+              </div>
+            </div>
+            <div class="hajj-hotel-row hajj-hotel-madina">
+              <div class="hajj-hotel-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+              <div class="hajj-hotel-text">
+                <div class="hajj-hotel-city">Madina Hotel</div>
+                <div class="hajj-hotel-name">Marjan Golden or Similar</div>
+                <span class="hajj-hotel-extra distance">100 Mtr</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Child Policy + Inclusions -->
+      <div class="hajj-bottom-info hajj-reveal">
+        <div class="hajj-info-card">
+          <div class="hajj-info-card-title">Child Policy</div>
+          <div class="hajj-child-grid">
+            <div class="hajj-child-item">
+              <div class="hajj-child-icon">👶</div>
+              <div class="hajj-child-age">Infant</div>
+              <div class="hajj-child-range">(0–2 yrs)</div>
+              <div class="hajj-child-price">₹38,786/-</div>
+            </div>
+            <div class="hajj-child-item">
+              <div class="hajj-child-icon">🧒</div>
+              <div class="hajj-child-age">Child</div>
+              <div class="hajj-child-range">(2–5 yrs)</div>
+              <div class="hajj-child-price">₹65,786/-</div>
+            </div>
+            <div class="hajj-child-item">
+              <div class="hajj-child-icon">👦</div>
+              <div class="hajj-child-age">Child</div>
+              <div class="hajj-child-range">(6–11 yrs)</div>
+              <div class="hajj-child-price">₹71,786/-</div>
+            </div>
+            <div class="hajj-child-item">
+              <div class="hajj-child-icon">🛏️</div>
+              <div class="hajj-child-age">Child + Bed</div>
+              <div class="hajj-child-range">&nbsp;</div>
+              <div class="hajj-child-price same-adult">Same as Adult</div>
+            </div>
+          </div>
+        </div>
+        <div class="hajj-info-card">
+          <div class="hajj-info-card-title">Our Complete Hajj Experience — All Under One Roof</div>
+          <div class="hajj-inclusions-grid">
+            <div class="hajj-inclusion-item"><div class="hajj-incl-icon">🎫</div><div class="hajj-incl-text">Ticket</div></div>
+            <div class="hajj-inclusion-item"><div class="hajj-incl-icon">📋</div><div class="hajj-incl-text">Visa</div></div>
+            <div class="hajj-inclusion-item"><div class="hajj-incl-icon">🏨</div><div class="hajj-incl-text">Accommodation</div></div>
+            <div class="hajj-inclusion-item"><div class="hajj-incl-icon">🚌</div><div class="hajj-incl-text">Transport</div></div>
+            <div class="hajj-inclusion-item"><div class="hajj-incl-icon">🍽️</div><div class="hajj-incl-text">3 Time Food</div></div>
+            <div class="hajj-inclusion-item"><div class="hajj-incl-icon">👔</div><div class="hajj-incl-text">Laundry</div></div>
+            <div class="hajj-inclusion-item"><div class="hajj-incl-icon">💧</div><div class="hajj-incl-text">Zamzam</div></div>
+            <div class="hajj-inclusion-item"><div class="hajj-incl-icon">🎁</div><div class="hajj-incl-text">Welcome Kit</div></div>
+            <div class="hajj-inclusion-item"><div class="hajj-incl-icon">🕌</div><div class="hajj-incl-text">Ziyarats</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Bar -->
+      <div class="hajj-contact-bar hajj-reveal">
+        <div class="hajj-contact-person">
+          <div class="hajj-contact-avatar">👤</div>
+          <div>
+            <div class="hajj-contact-name">Abdul Hadi</div>
+            <div class="hajj-contact-label">Call for More Info</div>
+          </div>
+        </div>
+        <div class="hajj-contact-sep"></div>
+        <a href="tel:+919324369143" class="hajj-contact-phone-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+          9324369143
+        </a>
+        <div class="hajj-support-badge">24×7 Support</div>
+      </div>
+
+      <!-- Branches -->
+      <div class="hajj-branches hajj-reveal">
+        <span class="hajj-branch-label">Branches</span>
+        <span class="hajj-branch-name">Jogeshwari West Mumbai</span>
+        <span class="hajj-branch-sep">|</span>
+        <span class="hajj-branch-name">Goa Sawantwadi</span>
+        <span class="hajj-branch-sep">|</span>
+        <span class="hajj-branch-name">Nagpur</span>
+        <span class="hajj-branch-sep">|</span>
+        <span class="hajj-branch-name">Muradabad</span>
+      </div>
+
+    </div>
+  </section>
+  <!-- /HAJJ OFFER -->
+
   <!-- BEST DEALS -->
   <section class="p-deals" id="p-deals">
     <div class="container">
@@ -1220,6 +1511,107 @@
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="airports.js"></script>
   <script src="premium.js"></script>
+
+  <!-- Hajj Offer Admin Toggle + Scroll Reveal -->
+  <script>
+  (function() {
+    // Admin toggle logic
+    var offer = document.getElementById('hajj-offer');
+    var toggle = document.getElementById('hajj-admin-toggle');
+    var toggleText = document.getElementById('hajj-toggle-text');
+    if (!offer || !toggle) return;
+
+    var isAdmin = window.location.search.indexOf('admin=true') !== -1;
+    var isHidden = localStorage.getItem('hajj-offer-hidden') === 'true';
+
+    function applyState() {
+      if (isHidden) {
+        offer.classList.add('hajj-hidden');
+        if (toggleText) toggleText.textContent = 'OFFER HIDDEN';
+      } else {
+        offer.classList.remove('hajj-hidden');
+        if (toggleText) toggleText.textContent = 'OFFER LIVE';
+      }
+    }
+
+    applyState();
+
+    if (isAdmin) {
+      toggle.classList.add('visible');
+      toggle.addEventListener('click', function() {
+        isHidden = !isHidden;
+        localStorage.setItem('hajj-offer-hidden', isHidden ? 'true' : 'false');
+        applyState();
+      });
+    }
+
+    // Scroll reveal for hajj-reveal elements
+    var reveals = document.querySelectorAll('.hajj-reveal');
+    if (!reveals.length) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('hajj-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(function(el) { observer.observe(el); });
+  })();
+  </script>
+
+  <!-- Hero Video Performance Optimization -->
+  <script>
+  (function() {
+    var video = document.getElementById('hero-video');
+    var fallback = document.querySelector('.p-hero-fallback');
+    if (!video) return;
+
+    // Force hardware acceleration
+    video.style.willChange = 'transform';
+    video.style.transform = 'translateZ(0)';
+    video.style.backfaceVisibility = 'hidden';
+
+    // Reduce playback rate slightly for smoother rendering on weaker GPUs
+    video.playbackRate = 1.0;
+
+    // Handle canplay — start playing and hide fallback
+    video.addEventListener('canplay', function() {
+      if (fallback) fallback.style.opacity = '0';
+      video.play().catch(function() {});
+    }, { once: true });
+
+    // Handle errors — show fallback image
+    video.addEventListener('error', function() {
+      video.style.display = 'none';
+      if (fallback) fallback.style.opacity = '1';
+    });
+
+    // Handle stall/waiting — prevent frozen frames
+    video.addEventListener('waiting', function() {
+      if (fallback) fallback.style.opacity = '1';
+    });
+    video.addEventListener('playing', function() {
+      if (fallback) fallback.style.opacity = '0';
+    });
+
+    // Pause video when tab is not visible (saves CPU/GPU)
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        video.pause();
+      } else {
+        video.play().catch(function() {});
+      }
+    });
+
+    // If video hasn't loaded in 5s, show fallback
+    setTimeout(function() {
+      if (video.readyState < 2) {
+        if (fallback) fallback.style.opacity = '1';
+      }
+    }, 5000);
+  })();
+  </script>
 </body>
 
 </html>
